@@ -20,11 +20,6 @@ const Style = {
     height: '100%'
   },
 
-  underline: {
-    position: 'absolute',
-    bottom: 0,
-  },
-
   indicator: {
     color: '#FFFFFF'
   },
@@ -46,6 +41,16 @@ class TabGroup extends Component {
     };
 
     this._handleClick = this._handleClick.bind(this);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const { defaultSelectedTab } = nextProps;
+
+    if (defaultSelectedTab !== this.props.defaultSelectedTab) {
+      this.setState({
+        selectedTab: defaultSelectedTab
+      });
+    }
   }
 
   _renderChildren() {
